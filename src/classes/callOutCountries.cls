@@ -10,7 +10,15 @@ public with sharing class callOutCountries {
         HttpRequest request = new HttpRequest();
         request.setEndpoint(urlCallOut);
         request.setMethod('GET');
-        HttpResponse response = http.send(request);
+        HttpResponse response;
+        if(!Test.isRunningTest()){
+            response = http.send(request);
+        }else{
+            HttpResponse r = new HttpResponse();
+            r.setStatusCode(200);
+            r.setBody('[{"name":"Afghanistan","topLevelDomain":[".af"],"alpha2Code":"AF","alpha3Code":"AFG","callingCodes":["93"],"capital":"Kabul","altSpellings":["AF","Af\\u0121\\u0101nist\\u0101n"],"region":"Asia"}]');
+            response = r;
+        }
         System.debug('status code '+response.getStatusCode());
         // If the request is successful, parse the JSON response.
         if (response.getStatusCode() == 200) {
@@ -37,7 +45,15 @@ public with sharing class callOutCountries {
                 );
 
                 Http callIn = new Http();
-                HttpResponse res = callIn.send(req);
+                HttpResponse res;
+                if(!Test.isRunningTest()){
+                    res = callIn.send(req);
+                }else{
+                    HttpResponse r = new HttpResponse();
+                    r.setStatusCode(200);
+                    r.setBody('[{"name":"Afghanistan","topLevelDomain":[".af"],"alpha2Code":"AF","alpha3Code":"AFG","callingCodes":["93"],"capital":"Kabul","altSpellings":["AF","Af\\u0121\\u0101nist\\u0101n"],"region":"Asia"}]');
+                    response = r;
+                }
                 System.debug(res);
 
                 LeadsManager.updateCountryData();

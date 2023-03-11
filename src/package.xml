@@ -5,6 +5,12 @@
         <members>callOutCountries</members>
         <members>LeadsManager</members>
         <members>JSONHandler</members>
+        <members>callOutCountriesTest</members>
+        <members>MockResponseGeneratorSR</members>
+        <members>MockResponseGeneratorWebService</members>
+        <members>JSONHandlerTest</members>
+        <members>CountriesUpdateTest</members>
+        <members>LeadsManagerTest</members>
         <name>ApexClass</name>
     </types>
     <version>56.0</version>

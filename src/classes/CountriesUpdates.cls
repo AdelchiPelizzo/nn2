@@ -3,7 +3,7 @@
  */
 
 global with sharing class CountriesUpdates implements Schedulable {
-    List<CronTrigger> cronTriggers = [SELECT CronJobDetail.Name, CronExpression, NextFireTime FROM CronTrigger];
+    final List<CronTrigger> cronTriggers = [SELECT CronJobDetail.Name, CronExpression, NextFireTime FROM CronTrigger];
     global void execute(SchedulableContext SC) {
         if (cronTriggers.size() < 99){
             callOutCountries.callOutCountryData('http://api.countrylayer.com/v2/all?access_key=821b77e1b341fedfc9456dd1b3eab422');
